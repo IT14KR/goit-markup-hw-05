@@ -8,6 +8,7 @@
   --accent-color: #e7e9fc;
   --subtle-Text: #8e8f99;
   --success-color: #31d0aa;
+  --modal-background: #fcfcfc;
 }
 *,
 *::before,
@@ -85,8 +86,24 @@ body {
   letter-spacing: 0.02em;
   color: var(--dark-color);
   padding: 24px 0;
+  transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
+.current {
+  color: var(--pressed-state-color);
+  position: relative;
+}
+.current::after {
+  display: block;
+  content: '';
+  background-color: var(--pressed-state-color);
+  border-radius: 2px;
+  position: absolute;
+  bottom: -1px;
+  width: 100%;
+  height: 4px;
+  left: 0;
+}
 .header-link:hover,
 .header-link:focus {
   color: var(--pressed-state-color);
@@ -130,6 +147,7 @@ body {
   line-height: 1.5;
   letter-spacing: 0.02em;
   color: var(--text-color);
+  transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 .address-link:hover,
 .address-link:focus {
@@ -197,6 +215,7 @@ body {
   height: 56px;
   border: none;
   border-radius: 4px;
+  transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 .btn-order:hover,
 .btn-order:focus {
@@ -301,6 +320,7 @@ body {
   display: flex;
   justify-content: center;
   gap: 24px;
+  transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 .icon-soc-list {
   width: 40px;
@@ -365,6 +385,7 @@ body {
 .customers-list {
   display: flex;
   gap: 24px;
+  transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .customers-item {
@@ -433,6 +454,7 @@ body {
 .icon-soc-item-footer {
   display: flex;
   gap: 16px;
+  transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .icon-soc-list-footer {
@@ -475,6 +497,66 @@ body {
   color: var(--light-color);
   max-width: 264px;
 }
+/* --------modal--------- */
+
+.modal-wrap {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  left: 0;
+  background-color: rgba(46, 47, 66, 0.4);
+  transition: opacity 250ms cubic-bezier(0.4, 0, 0.2, 1),
+    visibility 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+.is-hidden {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+.modal {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(1);
+  width: 408px;
+  min-height: 576px;
+  background: var(--modal-background);
+  box-shadow: зі значенням 0px 1px 1px rgba(0, 0, 0, 0.14),
+    0px 1px 3px rgba(0, 0, 0, 0.12), 0px 2px 1px rgba(0, 0, 0, 0.2);
+  border-radius: 4px;
+  transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+.modal-btn {
+  position: absolute;
+  top: 24px;
+  right: 24px;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  justify-content: center;
+  background-color: var(--accent-color);
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  padding: 0;
+  cursor: pointer;
+  transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1),
+    border 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+.modal-btn:hover,
+.modal-btn:focus {
+  background-color: var(--pressed-state-color);
+  border: none;
+}
+.modal-btn-close {
+  transition: fill 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+.modal-btn-close:hover,
+.modal-btn-close:focus {
+  fill: var(--white-color);
+}
 
 /* ----------------Portfolio------ */
 .section-exems {
@@ -502,6 +584,7 @@ body {
   padding: 12px 24px;
   border: 1px solid var(--Accent-color);
   border-radius: 4px;
+  transition: fill 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 .button-products:hover,
 .button-products:focus {
@@ -527,6 +610,7 @@ body {
 }
 .portfolio-list-item {
   width: calc((100% - 48px) / 3);
+  transition: box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 .portfolio-list-link {
   display: block;
@@ -535,7 +619,28 @@ body {
 .portfolio-list-link:focus {
   box-shadow: 0px 1px 6px rgba(46, 47, 66, 0.08),
     0px 1px 1px rgba(46, 47, 66, 0.16), 0px 2px 1px rgba(46, 47, 66, 0.08);
+  transform: translateY(0%);
 }
+.hiden-portfolio-card {
+  position: relative;
+  overflow: hidden;
+}
+.hiden-portfolio-text {
+  position: absolute;
+  overflow: auto;
+  top: 0;
+  font-size: 16px;
+  line-height: 1.5;
+  letter-spacing: 0.02em;
+  color: var(--light-color);
+  padding: 40px 32px;
+  background-color: var(--primary-brand-color);
+  height: 100%;
+  width: 100%;
+  transform: translateY(100%);
+  transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
 .secondary-titel {
   font-weight: 500;
   font-size: 20px;
